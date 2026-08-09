@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="EN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cricket FastScore & Latest News Portal</title>
+    <style>
+        :root {
+            --primary-color: #0f5132;
+            --secondary-color: #198754;
+            --bg-color: #f4f7f5;
+            --card-bg: #ffffff;
+            --text-color: #212529;
+        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; width: 100%; overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+        
+        /* Premium Header & Menu Bar */
+        .header-main { background: linear-gradient(135deg, var(--primary-color), #052c16); color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; width: 100%; }
+        .navbar-brand { padding: 15px 20px; font-size: 26px; font-weight: bold; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .menu-bar { display: flex; justify-content: center; gap: 15px; padding: 10px; background: rgba(0,0,0,0.2); list-style: none; margin: 0; width: 100%; }
+        .menu-bar a { color: white; text-decoration: none; font-weight: 500; font-size: 15px; padding: 6px 15px; border-radius: 4px; transition: 0.3s; }
+        .menu-bar a:hover { background: var(--secondary-color); }
+        .menu-bar .home-btn { background: #ffc107; color: #000; font-weight: bold; }
+        .menu-bar .home-btn:hover { background: #e0a800; color: #000; }
+
+        /* Main Container Structural Grid */
+        .container { max-width: 1100px; margin: 25px auto; padding: 0 15px; display: grid; grid-template-columns: 2fr 1fr; gap: 20px; align-items: start; width: 100%; }
+        
+        /* MAGIC STICKY EFFECT: Live score box scroll down par freeze hoga */
+        .sticky-score-box { position: -webkit-sticky; position: sticky; top: 120px; }
+        
+        /* 100% FIXED MOBILE RESPONSIVE ENGINE */
+        @media (max-width: 992px) { 
+            .container { grid-template-columns: 1fr !important; gap: 15px; padding: 0 10px; margin: 15px auto; } 
+            .sticky-score-box { position: static !important; }
+            .menu-bar { flex-wrap: wrap; justify-content: center; gap: 8px; padding: 8px 5px; }
+            .menu-bar a { font-size: 13px; padding: 5px 10px; }
+            .navbar-brand { font-size: 22px; padding: 10px; }
+        }
+
+        .main-content, .sidebar { display: flex; flex-direction: column; gap: 20px; width: 100%; }
+        .card { background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 15px; overflow: hidden; border: 1px solid #e2e8f0; position: relative; width: 100%; }
+        .card-title { font-size: 18px; font-weight: bold; color: var(--primary-color); margin-top: 0; margin-bottom: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .ads-box { background: #e9ecef; border: 1px dashed #ced4da; border-radius: 8px; padding: 15px; text-align: center; font-size: 12px; color: #6c757d; font-weight: bold; margin: 10px 0; width: 100%; }
+        
+        /* Anti-Redirect / Anti-Cut Iframe Wrapper */
+        iframe { width: 100%; border: none; border-radius: 8px; display: block; background: #fff; }
+        
+        /* Premium Smart News Wrapper System */
+        .news-iframe-wrapper { position: relative; width: 100%; height: 600px; overflow: hidden; border-radius: 8px; }
+        .news-iframe-wrapper iframe { position: absolute; top: -70px; left: 0; width: 100%; height: 670px; }
+
+        .footer { background: #111; color: #aaa; text-align: center; padding: 20px; margin-top: 50px; font-size: 14px; clear: both; width: 100%; }
+        .footer a { color: #fff; text-decoration: none; margin: 0 10px; display: inline-block; }
+        .footer a:hover { color: #ffc107; }
+    </style>
+</head>
+<body>
+
+    <!-- Connected Navigation Structure -->
+    <div class="header-main">
+        <div class="navbar-brand">👑 CricVibe Portal</div>
+        <ul class="menu-bar">
+            <li><a href="/" class="home-btn">🏠 Home</a></li>
+            <li><a href="/">🔴 Live Scores</a></li>
+            <li><a href="#news-section">📰 Latest News</a></li>
+            <li><a href="https://cricvibe-live.blogspot.com/p/about-us.html">ℹ️ About Us</a></li>
+            <li><a href="https://cricvibe-live.blogspot.com/p/contact-us.html">📞 Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- Top Adsense Banner Container -->
+    <div style="max-width:1100px; margin: 15px auto; padding: 0 15px;">
+        <div class="ads-box">
+            <script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7624748086951084" crossorigin="anonymous"></script>
+            <!-- banner -->
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7624748086951084" data-ad-slot="3921391147" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+<!-- CATCH HOME PAGE ONLY -->
+    <div class="container">
+        <!-- LEFT SIDE: SCORES & ANALYTICS WALL (Sticky Freeze on Scroll) -->
+        <div class="main-content sticky-score-box">
+            <div class="card">
+                <div class="card-title">🔴 Live Match Score (Automatic & Sticky)</div>
+                <!-- 100% WORKING VERIFIED SECURE LIVE SCORE ENGINE (No Cut/No Redirect) -->
+                <iframe src="https://widget.crictimes.org/" style="width:100%;min-height: 450px;" frameborder="0" scrolling="yes"></iframe>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">📊 Match Analytics Ad Zone</div>
+                <div class="ads-box">
+                    <script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7624748086951084" crossorigin="anonymous"></script>
+                    <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-7624748086951084" data-ad-slot="4128402562"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE: NEWS ZONE WITH SMART WRAPPER PROTECTION -->
+        <div class="sidebar" id="news-section">
+            <div class="card">
+                <div class="card-title">📰 Latest Cricket News (Auto-Updating Feed)</div>
+                <!-- Fixed Anti-Overlapping Wrapper -->
+                <div class="news-iframe-wrapper">
+                    <iframe src="https://crictimes.org" scrolling="yes"></iframe>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">📢 Sponsored Content</div>
+                <div class="ads-box" style="min-height: 200px; display: flex; align-items: center; justify-content: center;">
+                    <script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7624748086951084" crossorigin="anonymous"></script>
+                    <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="ca-pub-7624748086951084" data-ad-slot="6777922101"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- AdSense Compliant Dynamic Connected Footer Block -->
+    <div class="footer">
+        <p>&copy; 2026 CricVibe Portal. All Rights Reserved.</p>
+        <p style="margin-top:10px;">
+            <a href="/p/privacy-policy.html">Privacy Policy</a> | 
+            <a href="https://cricvibe-live.blogspot.com/p/terms-and-conditions.html">Terms & Conditions</a> | 
+            <a href="https://cricvibe-live.blogspot.com/p/about-us.html">About Us</a> | 
+            <a href="https://cricvibe-live.blogspot.com/p/contact-us.html">Contact Us</a>
+        </p>
+    </div>
+
+</body>
+</html>
